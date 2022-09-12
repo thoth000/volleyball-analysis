@@ -13,3 +13,6 @@ Anaconda Navigatorで仮想環境を作成する。
 - matplotlib
 - opencv
 - notebook
+
+## Git環境
+GitHubで自宅PCと研究室PCのリポジトリを共有する。
