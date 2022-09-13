@@ -1,0 +1,17 @@
+# camera
+# X = -900, Z = 710
+
+# Y = 0  (./images_camera/11.png)
+X = -784, Y = 14, Z = 669
+
+# Y = 300(./images_camera/12.png)
+X = -773, Y = 297, Z = 664
+
+# Y = 450(./images_camera/13.png)
+X = -733, Y = 437, Z = 656
+
+# Y = 600(./images_camera/14.png)
+X = -738, Y = 573, Z = 656
+
+# Y = 900(./images_camera/05.png)
+X = -757, Y = 842, Z = 658

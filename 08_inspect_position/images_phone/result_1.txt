@@ -1,0 +1,20 @@
+# iPhone SE2 4:3 zoom*1
+# X = -900, Z = 700
+
+# Y = 0  (./images_phone/11.png)
+X = -789, Y = 15, Z = 649
+R = 2066
+
+# Y = 300(./images_phone/12.png)
+X = -764, Y = 297, Z = 652
+
+# Y = 450(./images_phone/13.png)
+X = -765, Y = 439, Z = 651
+R = 2366
+
+# Y = 600(./images_phone/14.png)
+X = -740, Y = 576, Z = 647
+
+# Y = 900(./images_phone/15.png)
+X = -730, Y = 852, Z = 648
+R = 5222
