@@ -13,7 +13,7 @@ number_of_squares_Y = 7  # Y軸に沿ったチェス盤のマス目数
 nX = number_of_squares_X - 1 # X軸に沿った内角の数
 nY = number_of_squares_Y - 1 # X軸に沿った内角の数
 #square_size = 0.024 # 正方形辺長(単位 m)
-square_size = 24
+square_size = 24 #単位mm
 
 # すべてのチェスボード画像（ワールド座標系）の3次元点のベクトルを格納する
 object_points = []
