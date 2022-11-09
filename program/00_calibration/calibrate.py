@@ -42,7 +42,7 @@ def main():
     image = cv2.imread(image_file)  
 
     # グレースケールに変更
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)  
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
  
     # チェスボードの内角検知
     success, corners = cv2.findChessboardCorners(gray, (nY, nX), None)
@@ -75,7 +75,7 @@ def main():
  
   # 画像寸法
   height, width = distorted_image.shape[:2]
-     
+  print(height, width)
   # カメラ行列の絞り込み
   # 最適なカメラ行列を矩形の影響領域を返す
   optimal_camera_matrix, roi = cv2.getOptimalNewCameraMatrix(mtx, dist, 
