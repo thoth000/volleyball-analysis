@@ -4,12 +4,9 @@ import math
 # カメラ外部パラメータを求める
 # cameraMatrix : カメラ行列(fx, fy, cx, cyが入ってる)
 # distCoef     : 歪みベクトル
-def externalParameter(cameraMatrix, distCoef):
-    # 実空間座標(3次元)
-    objectPoints = []
-    # 画像座標(2次元)
-    imagePoints = []
-
+# objectPoints : 実空間座標(3次元)
+# imagePoints  : 画像座標(2次元)
+def externalParameter(cameraMatrix, distCoef, objectPoints, imagePoints):
     ret, rvec, tvec = cv2.solvePnP(objectPoints, imagePoints, cameraMatrix, distCoef)
 
     # R_mat : 回転行列(world -> camera)
