@@ -11,4 +11,4 @@ def getCoordCSV(fileName):
     return table
 
 if __name__ == "__main__":
-    print(readCoordCSV(OUTPUT_FILE))
+    print(getCoordCSV(OUTPUT_FILE))
