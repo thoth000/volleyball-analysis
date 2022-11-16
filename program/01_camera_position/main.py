@@ -11,15 +11,7 @@ from utility import *
 ### 宣言部
 calib_dir = "../00_calibration/iPhone_image/resize"
 image_path = "./image/target.png"
-objectPoints = [
-    [0, 0, 0],
-    [900, 0, 0],
-    [1800, 0, 0],
-    [1800, 900, 0],
-    [900, 900, 0],
-    [0, 900, 0],
-    [900, 450, 140]
-]
+
 imagePoints = []
 
 if __name__ == "__main__":
@@ -48,8 +40,8 @@ if __name__ == "__main__":
     # カメラ外部パラメータ取得
     objectPoints = np.array(objectPoints, dtype=np.float32)
     imagePoints = np.array(imagePoints, dtype=np.float32)
-    R_raw, t_raw, rvec, tvec = externalParameter(cameraMatrix, dist, objectPoints, imagePoints)
+    #R_raw, t_raw, rvec, tvec = externalParameter(cameraMatrix, dist, objectPoints, imagePoints)
+    R_raw, t_raw, rvec, tvec = externalParameter(optimalCameraMatrix, dist, objectPoints, imagePoints)
     print("[完了] カメラ外部パラメータ取得")
     print("R_raw\n", R_raw, "\n")
     print("t_raw\n", t_raw, "\n")
-    
