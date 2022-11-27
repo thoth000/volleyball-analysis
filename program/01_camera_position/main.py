@@ -22,7 +22,6 @@ if __name__ == "__main__":
     print("[完了] カメラ内部パラメータ取得")
     # 画像読み込み
     image = cv2.imread(image_path)
-    und_image = cv2.undistort(image, cameraMatrix, dist, None, optimalCameraMatrix)
     print("[完了] 較正用画像読み込み")
 
     if (len(argv) > 1) and (argv[1] == "click"):
@@ -30,7 +29,7 @@ if __name__ == "__main__":
         output_file = open(OUTPUT_FILE, "w")
         output_file.close()
         # 画像座標書き込み
-        plot_image.getImagePoints(und_image, True)
+        plot_image.getImagePoints(image, True)
         print("[完了] クリックによる画像座標書き込み")
     else:
         print("[SKIP] クリックによる画像座標書き込み")
@@ -40,8 +39,12 @@ if __name__ == "__main__":
     # カメラ外部パラメータ取得
     objectPoints = np.array(objectPoints, dtype=np.float32)
     imagePoints = np.array(imagePoints, dtype=np.float32)
+    
+    # テスト用歪みパラメータ
+    dummy_dist = np.array([0, 0, 0, 0])
+    
     #R_raw, t_raw, rvec, tvec = externalParameter(cameraMatrix, dist, objectPoints, imagePoints)
-    R_raw, t_raw, rvec, tvec = externalParameter(optimalCameraMatrix, dist, objectPoints, imagePoints)
+    R_raw, t_raw, rvec, tvec = externalParameter(optimalCameraMatrix, dummy_dist, objectPoints, imagePoints)
     print("[完了] カメラ外部パラメータ取得")
     print("R_raw\n", R_raw, "\n")
     print("t_raw\n", t_raw, "\n")

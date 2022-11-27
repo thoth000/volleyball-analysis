@@ -6,7 +6,7 @@ from utility import *
 
 # テキストファイルに座標を出力
 def clickImage(event):
-    if event.xdata != None:
+    if event.xdata != None and event.button == 3:
         output_file = open(OUTPUT_FILE, "a")
         print("button={}, x={}, y={}".format(event.button, event.xdata, event.ydata))
         output_file.write("{},{}\n".format(event.xdata, event.ydata))
