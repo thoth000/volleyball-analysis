@@ -23,7 +23,7 @@ def getImagePoints(image_file, nX, nY):
   else:
     return False, []
 
-def calibration(calib_dir, number_of_squares_X = 10, number_of_squares_Y = 7, square_size = 24, img_width = 1920, img_height = 1080):
+def calibration(calib_dir, number_of_squares_X = 10, number_of_squares_Y = 7, square_size = 24.2, img_width = 1920, img_height = 1080):
   image_files = glob.glob(f"{calib_dir}/*.png")
 
   nX = number_of_squares_X - 1

@@ -9,7 +9,7 @@ from external_parameter import *
 from utility import *
 
 ### 宣言部
-calib_dir = "../00_calibration/iPhone_image/resize"
+calib_dir = "../utility/calib_images"
 image_path = "./image/target.png"
 
 imagePoints = []
@@ -20,6 +20,7 @@ if __name__ == "__main__":
     # カメラ内部パラメータ取得
     cameraMatrix, optimalCameraMatrix, dist = calibration.calibration(calib_dir)
     print("[完了] カメラ内部パラメータ取得")
+    print("内部パラメータ\n", cameraMatrix, "\n")
     # 画像読み込み
     image = cv2.imread(image_path)
     print("[完了] 較正用画像読み込み")
@@ -43,8 +44,8 @@ if __name__ == "__main__":
     # テスト用歪みパラメータ
     dummy_dist = np.array([0, 0, 0, 0])
     
-    #R_raw, t_raw, rvec, tvec = externalParameter(cameraMatrix, dist, objectPoints, imagePoints)
-    R_raw, t_raw, rvec, tvec = externalParameter(optimalCameraMatrix, dummy_dist, objectPoints, imagePoints)
+    R_raw, t_raw, rvec, tvec = externalParameter(cameraMatrix, dist, objectPoints, imagePoints)
+    #R_raw, t_raw, rvec, tvec = externalParameter(optimalCameraMatrix, dist, objectPoints, imagePoints)
     print("[完了] カメラ外部パラメータ取得")
     print("R_raw\n", R_raw, "\n")
     print("t_raw\n", t_raw, "\n")

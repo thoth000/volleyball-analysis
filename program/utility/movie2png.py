@@ -13,18 +13,16 @@ def save_all_frames(video_path, dir_path, basename, ext='png'):
   digit = len(str(int(cap.get(cv2.CAP_PROP_FRAME_COUNT))))
 
   n = 0
-  count = 0
-  split = 5
+  split = 15
 
   while True:
+    ret, frame = cap.read()
     if n % split == 0:
-      ret, frame = cap.read()
       if ret:
-        print("image_{}.png".format(count))
-        cv2.imwrite('{}_{}.{}'.format(base_path, str(count).zfill(digit), ext), frame)
-        count+=1
+        print("image_{}.png".format(n//15))
+        cv2.imwrite('{}_{}.{}'.format(base_path, str(n//15).zfill(digit), ext), frame)
       else:
         return
     n+=1
 
-save_all_frames('sample.mp4', 'output', 'image')
+save_all_frames('IMG_1146.MOV', 'output', 'image')
