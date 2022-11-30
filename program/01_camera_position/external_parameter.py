@@ -15,5 +15,6 @@ def externalParameter(cameraMatrix, distCoef, points3D, points2D):
     R_raw = R_mat.T
     # t_raw : カメラ位置ベクトル
     t_raw = -R_raw @ tvec
+    t_raw = t_raw.reshape(1, 3)
 
-    return R_raw, t_raw, rvec, tvec
+    return R_raw, t_raw

@@ -1,5 +1,9 @@
 import csv
+import numpy as np
+
 OUTPUT_FILE = "./data/output.csv"
+IMG_WIDTH = 1920
+IMG_HEIGHT = 1080
 
 netHeightDict = {
     "小学生" : 2000,
@@ -12,41 +16,41 @@ netHeightDict = {
 }
 netHeight = netHeightDict["一般男子"]
 
-objectDict = {
+objectDict = [
     # コート原点から長辺を回る向き
-    "CP0" : [0, 0, 0],
-    "CP1" : [6000, 0, 0],
-    "CP2" : [9000, 0, 0],
-    "CP3" : [12000, 0, 0],
-    "CP4" : [18000, 0, 0],
-    "CP5" : [18000, 9000, 0],
-    "CP6" : [12000, 9000, 0],
-    "CP7" : [9000, 9000, 0],
-    "CP8" : [6000, 9000, 0],
-    "CP9" : [0, 9000, 0],
+    [0, 0, 0],
+    [6000, 0, 0],
+    [9000, 0, 0],
+    [12000, 0, 0],
+    [18000, 0, 0],
+    [18000, 9000, 0],
+    [12000, 9000, 0],
+    [9000, 9000, 0],
+    [6000, 9000, 0],
+    [0, 9000, 0],
     # ネット原点側（下、上、アンテナ先）、逆側（下、上、アンテナ先）
-    "CP10": [9000, 0, netHeight - 1000],
-    "CP11": [9000, 0, netHeight],
-    "CP12": [9000, 0, netHeight + 800],
-    "CP13": [9000, 9000, netHeight - 1000],
-    "CP14": [9000, 9000, netHeight],
-    "CP15": [9000, 9000, netHeight + 800]
-}
+    [9000, 0, netHeight - 1000],
+    [9000, 0, netHeight],
+    [9000, 0, netHeight + 800],
+    [9000, 9000, netHeight - 1000],
+    [9000, 9000, netHeight],
+    [9000, 9000, netHeight + 800]
+]
 
 objectPoints = [
-    objectDict["CP0"],
-    objectDict["CP1"],
-    objectDict["CP2"],
-    objectDict["CP3"],
-    objectDict["CP4"],  
-    objectDict["CP5"],
-    objectDict["CP6"],
-    objectDict["CP7"],
-    objectDict["CP8"],
-    objectDict["CP11"],
-    objectDict["CP12"],
-    objectDict["CP14"],
-    objectDict["CP15"]
+    objectDict[0],
+    objectDict[1],
+    objectDict[2],
+    objectDict[3],
+    objectDict[4],  
+    objectDict[5],
+    objectDict[6],
+    objectDict[7],
+    objectDict[8],
+    objectDict[11],
+    objectDict[12],
+    objectDict[14],
+    objectDict[15]
 ]
 
 def getCoordCSV(fileName):
@@ -58,5 +62,19 @@ def getCoordCSV(fileName):
     file.close()
     return table
 
+def getObjectPointFromIndexList(indexList):
+    retList = []
+    for index in indexList:
+        retList.append(objectDict[index])
+    return retList
+
+def writeCameraInfoCSV(cMat, dist, rotMat, tvec, rvec, csvFileName = "./data/cameraInfo.csv"):
+    with open(csvFileName, mode="w") as csvFile:
+        np.savetxt(csvFile, cMat,   delimiter=',')
+        np.savetxt(csvFile, dist,   delimiter=',')
+        np.savetxt(csvFile, rotMat, delimiter=',')
+        np.savetxt(csvFile, tvec,   delimiter=',')
+        np.savetxt(csvFile, rvec,   delimiter=",")
+        
 if __name__ == "__main__":
     print(getCoordCSV(OUTPUT_FILE))
