@@ -54,10 +54,11 @@ if __name__ == "__main__":
     
     camera2worldRotMat, cameraPosition = externalParameter(cameraMatrix, dist, objectPoints, imagePoints)
     #R_raw, t_raw, rvec, tvec = externalParameter(optimalCameraMatrix, dist, objectPoints, imagePoints)
-    
+    cameraPosition = cameraPosition.reshape(-1)
+
     # カメラの単位方向ベクトル
     cameraDirection = np.dot(camera2worldRotMat, [0, 0, 1]) * (-1)
-    
+
     print("[完了] カメラ外部パラメータ取得\n")
     print("カメラ座標系→世界座標系の回転行列\n", camera2worldRotMat, "\n")
     print("世界座標系のカメラ位置\n",           cameraPosition,     "\n")

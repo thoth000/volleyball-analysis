@@ -68,13 +68,25 @@ def getObjectPointFromIndexList(indexList):
         retList.append(objectDict[index])
     return retList
 
-def writeCameraInfoCSV(cMat, dist, rotMat, tvec, rvec, csvFileName = "./data/cameraInfo.csv"):
-    with open(csvFileName, mode="w") as csvFile:
-        np.savetxt(csvFile, cMat,   delimiter=',')
-        np.savetxt(csvFile, dist,   delimiter=',')
-        np.savetxt(csvFile, rotMat, delimiter=',')
-        np.savetxt(csvFile, tvec,   delimiter=',')
-        np.savetxt(csvFile, rvec,   delimiter=",")
-        
+def writeCameraInfoCSV(cMat, dist, rotMat, transVec, dirVec, csvFileDir = "./data"):
+    # 保存ファイル名
+    cMatFile     = "{}/camera_mat.csv".format(csvFileDir)
+    distFile     = "{}/dist.csv".format(csvFileDir)
+    rotMatFile   = "{}/rotation_mat.csv".format(csvFileDir)
+    transVecFile = "{}/trans_vec.csv".format(csvFileDir)
+    dirVecFile   = "{}/dir_vec.csv".format(csvFileDir)
+    # ファイル名とデータの対応付け
+    dataDict     = {
+        cMatFile     : cMat,
+        distFile     : dist,
+        rotMatFile   : rotMat,
+        transVecFile : transVec,
+        dirVecFile   : dirVec
+    }
+    # 保存
+    for csvFileName in dataDict:
+        with open(csvFileName, mode="w") as csvFile:
+            np.savetxt(csvFile, dataDict[csvFileName], delimiter=',')
+
 if __name__ == "__main__":
     print(getCoordCSV(OUTPUT_FILE))
