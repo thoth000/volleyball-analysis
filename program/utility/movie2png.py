@@ -1,5 +1,6 @@
 import cv2
 import os
+import sys
 
 def save_all_frames(video_path, dir_path, basename, ext='png'):
   cap = cv2.VideoCapture(video_path)
@@ -25,4 +26,4 @@ def save_all_frames(video_path, dir_path, basename, ext='png'):
         return
     n+=1
 
-save_all_frames('IMG_1146.MOV', 'output', 'image')
+save_all_frames('01_camera1.mp4', 'output', 'image')

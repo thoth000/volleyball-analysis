@@ -8,12 +8,8 @@ import plot_image
 from external_parameter import *
 from utility import *
 
-### 宣言部
-calib_dir = "../utility/calib_images"
-image_path = "./image/target.png"
-
 imagePoints = []
-pointIndexList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 11, 12, 14, 15]
+pointIndexList = []
 
 if __name__ == "__main__":
     # コマンドライン引数
@@ -28,12 +24,14 @@ if __name__ == "__main__":
     image = cv2.imread(image_path)
     print("[完了] 較正用画像読み込み")
 
+    # 指定ポイント読み込み
+    with open(point_path, "r") as pointFile:
+        rows = csv.reader(pointFile)
+        for row in rows:
+            pointIndexList = list(map(int, row))
+
     # 画像座標書き込み
     if (len(argv) > 1) and (argv[1] == "click"):
-        # ポイントの指定
-        print("[入力]画像クリックポイントの指定")
-        pointIndexList = list(map(int, input().split()))
-        
         # 画像座標出力先ファイルの初期化
         output_file = open(OUTPUT_FILE, "w")
         output_file.close()

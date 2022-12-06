@@ -1,7 +1,15 @@
 import csv
 import numpy as np
 
-OUTPUT_FILE = "./data/output.csv"
+# === 変更箇所 ===
+calib_dir = "../utility/calib_images"
+data_dir = "./data_camera2"
+
+image_path = "./image/target_camera2.png"
+point_path = "./input_data/point_camera2.csv"
+OUTPUT_FILE = "{}/output.csv".format(data_dir)
+# === ここまで ===
+
 IMG_WIDTH = 1920
 IMG_HEIGHT = 1080
 
@@ -68,7 +76,7 @@ def getObjectPointFromIndexList(indexList):
         retList.append(objectDict[index])
     return retList
 
-def writeCameraInfoCSV(cMat, dist, rotMat, transVec, dirVec, csvFileDir = "./data"):
+def writeCameraInfoCSV(cMat, dist, rotMat, transVec, dirVec, csvFileDir = data_dir):
     # 保存ファイル名
     cMatFile     = "{}/camera_mat.csv".format(csvFileDir)
     distFile     = "{}/dist.csv".format(csvFileDir)
