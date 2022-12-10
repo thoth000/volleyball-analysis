@@ -43,10 +43,10 @@ def compute3dCoord(t1, v1, t2, v2):
     s_val = result[s]
 
     # 二乗和誤差の出力
-    error = ((t1[0] + h_val*v1[0]) - (t2[0] + s_val*v2[0]))**2 + \
-            ((t1[1] + h_val*v1[1]) - (t2[1] + s_val*v2[1]))**2 + \
-            ((t1[2] + h_val*v1[2]) - (t2[2] + s_val*v2[2]))**2
-    print("error :", error, "\n")
+    # error = ((t1[0] + h_val*v1[0]) - (t2[0] + s_val*v2[0]))**2 + \
+    #         ((t1[1] + h_val*v1[1]) - (t2[1] + s_val*v2[1]))**2 + \
+    #         ((t1[2] + h_val*v1[2]) - (t2[2] + s_val*v2[2]))**2
+    # print("error :", error, "\n")
 
     # 2直線上の最近点
     closePoint1 = np.float32([
