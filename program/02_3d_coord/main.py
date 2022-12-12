@@ -62,12 +62,12 @@ for i in range(jsonDataNum):
     worldCoord = compute3dCoord(transVec_c1, vec_c1, transVec_c2, vec_c2)
     
     coordData[playerId] = worldCoord.tolist()
-  
+
   with open("output/{}".format(jsonName), "w") as f:
     json.dump(coordData, f)
-  
+
   print("write data in {}".format(jsonName))
-  
+
   c1File.close()
   c2File.close()
 
