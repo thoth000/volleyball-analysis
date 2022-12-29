@@ -14,7 +14,7 @@ if not video.isOpened():
     sys.exit()
 
 for imgFile in images:
-    # hoge0000.png, hoge0001.png,..., hoge0090.png
+    print(imgFile)
     img = cv2.imread(imgFile)
 
     # can't read image, escape
@@ -24,7 +24,6 @@ for imgFile in images:
 
     # add
     video.write(img)
-    print(imgFile)
 
 video.release()
 print("created")

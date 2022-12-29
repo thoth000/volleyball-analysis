@@ -20,8 +20,8 @@ def save_all_frames(video_path, dir_path, basename, ext='png'):
     ret, frame = cap.read()
     if n % split == 0:
       if ret:
-        print("image_{}.png".format(n//15))
-        cv2.imwrite('{}_{}.{}'.format(base_path, str(n//15).zfill(digit), ext), frame)
+        print("image_{}.png".format(n//split))
+        cv2.imwrite('{}_{}.{}'.format(base_path, str(n//split).zfill(digit), ext), frame)
       else:
         return
     n+=1
