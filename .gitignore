@@ -1,5 +1,7 @@
-# utility/output内の画像ファイルを除外
-/utility/output/*
+# picture
+*.jpg
+*.png
 
-# utility内の動画を除外
-/utility/*.mp4
+# movie
+*.mp4
+*.avi
