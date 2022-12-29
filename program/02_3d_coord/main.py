@@ -2,14 +2,20 @@ import numpy as np
 import cv2
 import csv
 import json
+import glob
 from coord import *
 
 # camera1 - camera2 ID対応JSON
 correspondFile  = open("correspond.json", "r")
 
 # data
-jsonDataNum = 276
+
+c1Files = glob.glob("c1_json/*.json")
+c2Files = glob.glob("c2_json/*.json")
+jsonDataNum = min(len(c1Files), len(c2Files))
 correspondData  = json.load(correspondFile)
+
+digit = len(str(jsonDataNum))
 
 # camera1 data file
 c1_dir      = "../01_camera_position/data_camera1"
@@ -28,10 +34,10 @@ transVec_c2 = np.loadtxt("{}/trans_vec.csv".format(c2_dir), delimiter=",")
 dirVec_c2   = np.loadtxt("{}/dir_vec.csv".format(c2_dir), delimiter=",")
 
 for i in range(jsonDataNum):
-  jsonName = "{}.json".format(i)
+  oldJsonName = "{}.json".format(i)
   
-  c1File = open("c1_json/{}".format(jsonName), "r")
-  c2File = open("c2_json/{}".format(jsonName), "r")
+  c1File = open("c1_json/{}".format(oldJsonName), "r")
+  c2File = open("c2_json/{}".format(oldJsonName), "r")
   
   c1Data = json.load(c1File)
   c2Data = json.load(c2File)
@@ -63,10 +69,12 @@ for i in range(jsonDataNum):
     
     coordData[playerId] = worldCoord.tolist()
 
-  with open("output/{}".format(jsonName), "w") as f:
+  newJsonName = "{}.json".format(str(i).zfill(digit))
+
+  with open("output/{}".format(newJsonName), "w") as f:
     json.dump(coordData, f)
 
-  print("write data in {}".format(jsonName))
+  print("write data in {}".format(newJsonName))
 
   c1File.close()
   c2File.close()

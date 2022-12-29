@@ -6,6 +6,8 @@ import glob
 jsonList = glob.glob("input_data/*.json")
 count = 0
 
+digit = len(str(len(jsonList)))
+
 fig = plt.figure(figsize=(19.2,10.8))
 ax  = plt.axes()
 
@@ -27,7 +29,11 @@ for file in jsonList:
     data = json.load(f)
     for person in data:
       ax.text(data[person][0], data[person][1], person, size=20, horizontalalignment="center", verticalalignment="center")
-      print(person, data[person][0], data[person][1])
-  plt.savefig('output/sample{:0=3}.png'.format(count))
+  
+  print(file)
+  
+  figFileName = "output/sanple{}.png".format(str(count).zfill(digit))
+  # plt.savefig('output/sample{:0=3}.png'.format(count))
+  plt.savefig(figFileName)
   count += 1
   ax.clear()
