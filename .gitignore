@@ -7,5 +7,5 @@
 *.avi
 
 # specific JSON file
-./program/06_change_ID/origin_c1/*.json
-./program/06_change_ID/origin_c2/*.json
+./program/06_change_ID/origin_c1/
+./program/06_change_ID/origin_c2/
