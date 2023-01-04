@@ -5,3 +5,6 @@
 # movie
 *.mp4
 *.avi
+
+/program/06_change_ID/origin_c1/*.json
+/program/06_change_ID/origin_c2/*.json
