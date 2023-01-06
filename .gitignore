@@ -5,3 +5,10 @@
 # movie
 *.mp4
 *.avi
+
+# specific JSON file
+/program/06_change_ID/origin_c1/*.json
+/program/06_change_ID/origin_c2/*.json
+
+/program/06_change_ID/track_c1/*.json
+/program/06_change_ID/track_c2/*.json
