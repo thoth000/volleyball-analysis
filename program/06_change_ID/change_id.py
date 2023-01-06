@@ -27,8 +27,11 @@ def calculateError(oldID, p1, newID, p2):
 
 # ---関数定義終了---
 
-originDir = "./origin_c1"
-outDir    = "./track_c1"
+originDir = "./origin_c2"
+outDir    = "./track_c2"
+
+# 出力ディレクトリ作成
+os.makedirs(outDir, exist_ok=True)
 
 currentIDcorrespondence = {} # 現ID : 元IDの対応表
 position = {}
@@ -55,7 +58,7 @@ for fileIndex, path in enumerate(files):
   # 未対応IDの特定
   for idx in dictData:
     if idx in currentIDcorrespondence.keys():
-      position[idx] = dictData[idx] # 位置の更新
+      position[idx] = getBoxCenter(dictData[idx]) # 位置の更新
       matchedDict[idx] = True
     else:
       unmatchedNewIDs.append(idx)
@@ -91,29 +94,32 @@ for fileIndex, path in enumerate(files):
     # 未対応IDリストからの削除
     unmatchedOldIDs.remove(oldID)
     unmatchedNewIDs.remove(newID)
+    # 元IDの引継ぎ
+    originID = currentIDcorrespondence[oldID] # 元ID
+    currentIDcorrespondence[newID] = originID
+    position[newID] = getBoxCenter(dictData[newID]) # 位置の更新
     # 前IDのデータ消去
     currentIDcorrespondence.pop(oldID)
     position.pop(oldID)
-    # 元IDの引継ぎ
-    currentIDcorrespondence[newID] = originID
-    position[newID] = getBoxCenter(dictData[newID]) # 位置の更新
     # 現フレームの出現IDに登録
     matchedDict[newID] = True
 
   # 新規IDと対応付ける旧IDがなくなった場合
   if len(unmatchedOldIDs) == 0:
-    # 新規IDの登録
-    currentIDcorrespondence[newID] = newID
-    position[newID] = getBoxCenter(dictData[newID])
-    # 現フレームの出現IDに登録
-    matchedDict[newID] = True
+    for newID in unmatchedNewIDs:
+      # 新規IDの登録
+      currentIDcorrespondence[newID] = newID
+      position[newID] = getBoxCenter(dictData[newID])
+      # 現フレームの出現IDに登録
+      matchedDict[newID] = True
 
   # ---対応付け終了---
   # ---出力部---
   outDict = {}
 
   for currentID in position:
-    if (matchedDict[currentID]):
+    if not(matchedDict[currentID]):
+      print(currentID)
       continue
 
     originID = currentIDcorrespondence[currentID]
@@ -124,7 +130,8 @@ for fileIndex, path in enumerate(files):
   outPath = outDir + "/" + str(fileIndex).zfill(digit) + ".json"
     
   with open(outPath, "w") as outFile:
-    json.dump(outDict, outFile)
-  
+    json.dump(outDict, outFile, indent=4)
+
   # ---出力部終了---
   file.close()
+  print("created", outPath)
