@@ -43,8 +43,10 @@ def splitJson(path, outDir, digit):
       # 欲しいデータ
       idx = str(int(data["idx"]))
       keypoints = data["keypoints"]
-      
-      frameDict[idx] = keypoints
+      box       = data["box"]
+      # boxのデータ形式
+      # [x_leftTop, y_leftTop, width, height]
+      frameDict[idx] = keypoints + box
     
     json.dump(frameDict, outFile, indent=4)
     outFile.close()
