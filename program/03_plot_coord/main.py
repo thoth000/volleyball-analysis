@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
+import os
 import json
 import glob
 
@@ -15,6 +16,9 @@ court1 = patches.Rectangle(xy=(0, 0), width = 6000, height=9000, facecolor="whit
 court2 = patches.Rectangle(xy=(6000, 0), width = 3000, height=9000, facecolor="white", edgecolor="black", fill=True)
 court3 = patches.Rectangle(xy=(9000, 0), width = 3000, height=9000, facecolor="white", edgecolor="black", fill=True)
 court4 = patches.Rectangle(xy=(12000, 0), width = 6000, height=9000, facecolor="white", edgecolor="black", fill=True)
+
+outDir = "output"
+os.makedirs(outDir, exist_ok=True)
 
 for file in jsonList:
   plt.xlim(0, 18000)

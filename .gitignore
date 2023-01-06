@@ -7,8 +7,12 @@
 *.avi
 
 # specific JSON file
+/program/03_plot_coord/input_data/*.json
+
 /program/06_change_ID/origin_c1/*.json
 /program/06_change_ID/origin_c2/*.json
 
 /program/06_change_ID/track_c1/*.json
 /program/06_change_ID/track_c2/*.json
+
+/program/07_3d/output
