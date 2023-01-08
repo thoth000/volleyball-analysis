@@ -21,7 +21,7 @@ samples = len(c1Files)
 digit = len(str(samples))
 
 # 許容距離
-errorLimit = 10000
+errorLimit = 2000
 
 # データ出力先
 outputDir = "output"
@@ -43,21 +43,23 @@ for index in range(samples):
   searchResults = []
   # 全探索
   for id1 in c1Data:
-    hip1 = coord.getHipCoord(c1Data[id1])
-    vec1 = coord.getHeadingVector(hip1, cMat_c1, rotMat_c1)
+    # coord1 = coord.getHipCoord(c1Data[id1])
+    coord1 = coord.getBoxCenter(c1Data[id1])
+    vec1 = coord.getHeadingVector(coord1, cMat_c1, rotMat_c1)
     for id2 in c2Data:
-      hip2 = coord.getHipCoord(c2Data[id2])
-      vec2 = coord.getHeadingVector(hip2, cMat_c2, rotMat_c2)
+      # coord2 = coord.getHipCoord(c2Data[id2])
+      coord2 = coord.getBoxCenter(c2Data[id2])
+      vec2 = coord.getHeadingVector(coord2, cMat_c2, rotMat_c2)
       
-      hip, error = coord.getClosestPoint(transVec_c1, vec1, transVec_c2, vec2)
+      coord3D, error = coord.getClosestPoint(transVec_c1, vec1, transVec_c2, vec2)
       
       if error > errorLimit:
         continue
 
       data = {
-        "position_x":hip[0],
-        "position_y":hip[1],
-        "position_z":hip[2],
+        "position_x":coord3D[0],
+        "position_y":coord3D[1],
+        "position_z":coord3D[2],
         "c1_id":id1,
         "c2_id":id2,
         "error":error
