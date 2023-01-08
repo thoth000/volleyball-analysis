@@ -6,6 +6,10 @@
 *.mp4
 *.avi
 
+# 例外の動画
+!/data/undistort/*
+!/data/origin_movie/*
+
 # specific JSON file
 /program/03_plot_coord/input_data/*.json
 
