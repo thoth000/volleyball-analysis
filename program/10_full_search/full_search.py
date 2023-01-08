@@ -1,9 +1,9 @@
 import glob
 import json
 import numpy as np
+import os
 import calibrate
 import coord
-
 
 # カメラデータ
 cMat_c1, dist_c1, rotMat_c1, transVec_c1, dirVec_c1 = calibrate.getC1Data()
@@ -20,7 +20,20 @@ c2Files = glob.glob(c2Dir + "/*.json")
 samples = len(c1Files)
 digit = len(str(samples))
 
-for index in samples:
+# 許容距離
+errorLimit = 10000
+
+# データ出力先
+outputDir = "output"
+os.makedirs(outputDir, exist_ok=True)
+
+# フレーム処理
+for index in range(samples):
+  # 進捗表示
+  print("processing", index)
+  # フレームデータ出力先
+  outputPath = outputDir + "/{}.json".format(str(index).zfill(digit))
+  
   c1File = open(c1Files[index], "r")
   c2File = open(c2Files[index], "r")
   
@@ -28,3 +41,46 @@ for index in samples:
   c2Data = json.load(c2File)
   
   searchResults = []
+  # 全探索
+  for id1 in c1Data:
+    hip1 = coord.getHipCoord(c1Data[id1])
+    vec1 = coord.getHeadingVector(hip1, cMat_c1, rotMat_c1)
+    for id2 in c2Data:
+      hip2 = coord.getHipCoord(c2Data[id2])
+      vec2 = coord.getHeadingVector(hip2, cMat_c2, rotMat_c2)
+      
+      hip, error = coord.getClosestPoint(transVec_c1, vec1, transVec_c2, vec2)
+      
+      if error > errorLimit:
+        continue
+
+      data = {
+        "position_x":hip[0],
+        "position_y":hip[1],
+        "position_z":hip[2],
+        "c1_id":id1,
+        "c2_id":id2,
+        "error":error
+      }
+      searchResults.append(data)
+  
+  searchResults = sorted(searchResults, key=lambda d: d["error"])
+  idList1 = list(c1Data.keys())
+  idList2 = list(c2Data.keys())
+  
+  personIndex = 1
+  outputData = {}
+  while ((len(idList1) > 0) and (len(idList2) > 0) and (len(searchResults) > 0)):
+    data = searchResults.pop(0)
+
+    if not((data["c1_id"] in idList1) and (data["c2_id"] in idList2)):
+      continue
+    
+    outputData[str(personIndex)] = data
+    idList1.remove(data["c1_id"])
+    idList2.remove(data["c2_id"])
+    personIndex += 1
+  
+  # データ出力
+  with open(outputPath, "w") as outputFile:
+    json.dump(outputData, outputFile, indent=4)

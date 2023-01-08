@@ -9,6 +9,7 @@ def save_all_frames(video_path, dir_path, ext='png'):
   cap = cv2.VideoCapture(video_path)
 
   if not cap.isOpened():
+    print("can't open")
     return
 
   digit = len(str(int(cap.get(cv2.CAP_PROP_FRAME_COUNT))))

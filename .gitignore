@@ -15,4 +15,8 @@
 /program/06_change_ID/track_c1/*.json
 /program/06_change_ID/track_c2/*.json
 
-/program/07_3d/output
+/program/07_3d/output/*.json
+
+/program/10_full_search/output/*.json
+
+/program/11_plot_coord/input/*.json
