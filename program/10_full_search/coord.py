@@ -1,5 +1,12 @@
 import numpy as np
 
+# 検知枠の中心座標(画像座標)
+def getBoxCenter(array):
+  x = array[51] + array[53]/2
+  y = array[52] + array[54]/2
+  
+  return np.array([x, y])
+
 # keypointsから腰座標(画像座標)
 def getHipCoord(array):
   left  = np.array(array[11*3: 11*3+2])
