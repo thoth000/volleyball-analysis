@@ -14,7 +14,7 @@ def save_all_frames(video_path, dir_path, basename, ext='png'):
   digit = len(str(int(cap.get(cv2.CAP_PROP_FRAME_COUNT))))
 
   n = 0
-  split = 15
+  split = 1
 
   while True:
     ret, frame = cap.read()
@@ -26,4 +26,4 @@ def save_all_frames(video_path, dir_path, basename, ext='png'):
         return
     n+=1
 
-save_all_frames('01_camera1.mp4', 'output', 'image')
+save_all_frames("../../data/tracking/01_camera1/01_camera1.mp4", 'output', 'image')
