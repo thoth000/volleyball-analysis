@@ -22,6 +22,10 @@
 /program/utility/c1_json/*.json
 /program/utility/c2_json/*.json
 
+/program/02_3D_Coord/c1_json/*.json
+/program/02_3D_Coord/c2_json/*.json
+/program/02_3D_Coord/output/*.json
+
 /program/03_plot_coord/input_data/*.json
 
 /program/06_change_ID/origin_c1/*.json

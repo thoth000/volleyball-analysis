@@ -66,7 +66,7 @@ for i in range(jsonDataNum):
   newJsonName = "{}.json".format(str(i).zfill(digit))
 
   with open("output/{}".format(newJsonName), "w") as f:
-    json.dump(coordData, f)
+    json.dump(coordData, f, indent=4)
 
   print("write data in {}".format(newJsonName))
 
