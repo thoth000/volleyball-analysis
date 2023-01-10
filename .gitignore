@@ -12,6 +12,12 @@
 
 !/data/origin_movie/*
 
+!/data/undistort_showbox/01_camera1/*
+!/data/undistort_showbox/01_camera2/*
+
+!/data/undistort_tracking/01_camera1/*
+!/data/undistort_tracking/01_camera2/*
+
 # specific JSON file
 /program/03_plot_coord/input_data/*.json
 
