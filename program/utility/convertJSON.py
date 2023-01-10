@@ -68,7 +68,7 @@ for i in range(0, end_index+1):
     outputFile = "{}.json".format(str(i).zfill(digit))
     
     with open("c1_json/{}".format(outputFile), "w") as f:
-        json.dump(c1TmpData, f)
+        json.dump(c1TmpData, f, indent=4)
         
     with open("c2_json/{}".format(outputFile), "w") as f:
-        json.dump(c2TmpData, f)
+        json.dump(c2TmpData, f, indent=4)

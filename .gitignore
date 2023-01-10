@@ -19,6 +19,9 @@
 !/data/undistort_tracking/01_camera2/*
 
 # specific JSON file
+/program/utility/c1_json/*.json
+/program/utility/c2_json/*.json
+
 /program/03_plot_coord/input_data/*.json
 
 /program/06_change_ID/origin_c1/*.json
