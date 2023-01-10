@@ -34,7 +34,7 @@ transVec_c2 = np.loadtxt("{}/trans_vec.csv".format(c2_dir), delimiter=",")
 dirVec_c2   = np.loadtxt("{}/dir_vec.csv".format(c2_dir), delimiter=",")
 
 for i in range(jsonDataNum):
-  oldJsonName = "{}.json".format(i)
+  oldJsonName = "{}.json".format(str(i).zfill(digit))
   
   c1File = open("c1_json/{}".format(oldJsonName), "r")
   c2File = open("c2_json/{}".format(oldJsonName), "r")
@@ -55,12 +55,6 @@ for i in range(jsonDataNum):
     
     c1Coord = np.array(c1Data[playerId],     dtype = np.float32)
     c2Coord = np.array(c2Data[correspondId], dtype = np.float32)
-    
-    #c1UndistortedCoord = cv2.undistortPoints(src = c1Coord, cameraMatrix = cMat_c1, distCoeffs = dist_c1).reshape(-1)
-    #c2UndistortedCoord = cv2.undistortPoints(src = c2Coord, cameraMatrix = cMat_c2, distCoeffs = dist_c2).reshape(-1)
-    
-    #vec_c1 = getHeadingVector(c1UndistortedCoord, cMat_c1, rotMat_c1)
-    #vec_c2 = getHeadingVector(c2UndistortedCoord, cMat_c2, rotMat_c2)
     
     vec_c1 = getHeadingVector(c1Coord, cMat_c1, rotMat_c1)
     vec_c2 = getHeadingVector(c2Coord, cMat_c2, rotMat_c2)

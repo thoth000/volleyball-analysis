@@ -2,6 +2,7 @@
 import json
 
 end_index = 275
+digit = len(str(end_index))
 
 with open("json_data/c1.json") as c1File:
     c1Data = json.load(c1File)
@@ -64,7 +65,7 @@ for i in range(0, end_index+1):
         
         c2TmpData[playerId] = midHip
     
-    outputFile = "{}.json".format(i)
+    outputFile = "{}.json".format(str(i).zfill(digit))
     
     with open("c1_json/{}".format(outputFile), "w") as f:
         json.dump(c1TmpData, f)
