@@ -58,8 +58,11 @@ os.makedirs("origin_c1", exist_ok=True)
 
 os.makedirs("origin_c2", exist_ok=True)
 
-c1_path = "../../data/tracking/01_camera1/alphapose-results.json"
-c2_path = "../../data/tracking/01_camera2/alphapose-results.json"
+# c1_path = "../../data/tracking/01_camera1/alphapose-results.json"
+# c2_path = "../../data/tracking/01_camera2/alphapose-results.json"
+
+c1_path = "../../data/undistort_showbox/01_camera1/alphapose-results.json"
+c2_path = "../../data/undistort_showbox/01_camera2/alphapose-results.json"
 
 frames = getMovieFrame(c1_path)
 digit  = len(str(frames))

@@ -19,6 +19,7 @@
 !/data/undistort_tracking/01_camera2/*
 
 # specific JSON file
+
 /program/utility/c1_json/*.json
 /program/utility/c2_json/*.json
 

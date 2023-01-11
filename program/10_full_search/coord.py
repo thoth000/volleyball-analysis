@@ -58,6 +58,6 @@ def getClosestPoint(t1, v1, t2, v2):
   p2 = computeClosestPoint(t2, v2, t1, v1)
   
   p = (p1+p2)/2
-  error = np.linalg.norm(p1-p2)**2
+  error = np.linalg.norm(p1-p2)
   
-  return p, error
+  return p, error, p1, p2

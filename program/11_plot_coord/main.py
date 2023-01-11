@@ -34,7 +34,10 @@ for file in jsonList:
     for person in data:
       
       id = data[person]["c1_id"]
-      ax.text(data[person]["position_x"], data[person]["position_y"], id, size=25, horizontalalignment="center", verticalalignment="center")
+      if data[person]["position_x"] > 9000:
+        ax.text(data[person]["position_x"], data[person]["position_y"], id, size=25, horizontalalignment="center", verticalalignment="center", color="red")
+      else:
+        ax.text(data[person]["position_x"], data[person]["position_y"], id, size=25, horizontalalignment="center", verticalalignment="center", color="blue")
   
   print(file)
   

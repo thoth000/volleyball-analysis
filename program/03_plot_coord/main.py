@@ -32,7 +32,10 @@ for file in jsonList:
   with open(file) as f:
     data = json.load(f)
     for person in data:
-      ax.text(data[person][0], data[person][1], person, size=20, horizontalalignment="center", verticalalignment="center")
+      if data[person][0] > 9000:
+        ax.text(data[person][0], data[person][1], person, size=20, horizontalalignment="center", verticalalignment="center", color="red")
+      else:
+        ax.text(data[person][0], data[person][1], person, size=20, horizontalalignment="center", verticalalignment="center", color="blue")
   
   print(file)
   

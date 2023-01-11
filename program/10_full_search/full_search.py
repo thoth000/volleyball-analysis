@@ -10,8 +10,10 @@ cMat_c1, dist_c1, rotMat_c1, transVec_c1, dirVec_c1 = calibrate.getC1Data()
 cMat_c2, dist_c2, rotMat_c2, transVec_c2, dirVec_c2 = calibrate.getC2Data()
 
 # jsonファイルディレクトリ
-c1Dir = "../../data/tracking/01_camera1/jsons"
-c2Dir = "../../data/tracking/01_camera2/jsons"
+# c1Dir = "../../data/tracking/01_camera1/jsons"
+# c2Dir = "../../data/tracking/01_camera2/jsons"
+c1Dir = "../../data/undistort_showbox/01_camera1/jsons"
+c2Dir = "../../data/undistort_showbox/01_camera2/jsons"
 
 # jsonファイル
 c1Files = glob.glob(c1Dir + "/*.json")
@@ -26,6 +28,10 @@ errorLimit = 2000
 # データ出力先
 outputDir = "output"
 os.makedirs(outputDir, exist_ok=True)
+
+# 誤差出力先
+subOutDir = "sub"
+os.makedirs(subOutDir, exist_ok=True)
 
 # フレーム処理
 for index in range(samples):
@@ -51,22 +57,38 @@ for index in range(samples):
       coord2 = coord.getBoxCenter(c2Data[id2])
       vec2 = coord.getHeadingVector(coord2, cMat_c2, rotMat_c2)
       
-      coord3D, error = coord.getClosestPoint(transVec_c1, vec1, transVec_c2, vec2)
+      coord3D, error, coord3D_L1, coord3D_L2 = coord.getClosestPoint(transVec_c1, vec1, transVec_c2, vec2)
       
-      if error > errorLimit:
-        continue
+      # if error > errorLimit:
+      #  continue
 
+      subData = {
+        "x1" : coord3D_L1[0],
+        "y1" : coord3D_L1[1],
+        "z1" : coord3D_L1[2],
+        "x2" : coord3D_L2[0],
+        "y2" : coord3D_L2[1],
+        "z2" : coord3D_L2[2],
+      }
+      
       data = {
         "position_x":coord3D[0],
         "position_y":coord3D[1],
         "position_z":coord3D[2],
         "c1_id":id1,
         "c2_id":id2,
-        "error":error
+        "error":error,
+        "data" : subData
       }
       searchResults.append(data)
   
   searchResults = sorted(searchResults, key=lambda d: d["error"])
+  
+  # エラー確認用出力プログラム
+  subOutPath = subOutDir + "/{}.json".format(str(index).zfill(digit))
+  with open(subOutPath, "w") as subOutFile:
+    json.dump(searchResults, subOutFile, indent=4)
+  
   idList1 = list(c1Data.keys())
   idList2 = list(c2Data.keys())
   
