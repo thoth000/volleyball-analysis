@@ -40,3 +40,7 @@
 /program/10_full_search/output/*.json
 
 /program/11_plot_coord/input/*.json
+
+# 論文
+!/Report/final/01/*
+!/Report/final/02/*

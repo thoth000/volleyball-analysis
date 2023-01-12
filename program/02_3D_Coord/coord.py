@@ -23,43 +23,28 @@ def getHeadingVector(coord, cameraMat, rotationMat):
 
     return vecW
 
+def computeClosestPoint(t1, v1, t2, v2):
+  # 分子
+  # v1, v2が単位ベクトル化されてないならコメント外す
+  v1 = v1 / np.linalg.norm(v1)
+  v2 = v2 / np.linalg.norm(v2)
+  
+  part0 = v1 - (np.dot(v2, v1) * v2)
+  part1 = t2 - t1
+  numerator = np.dot(part0, part1)
+  
+  # 分母
+  denominator = 1 - (np.dot(v2, v1))**2
+  
+  point = t1 + (numerator/denominator) * v1
+  return point
+
+# 2直線の中点と最近点同士の誤差を返す(main関数で実行)
 def compute3dCoord(t1, v1, t2, v2):
-    # 媒介変数2種
-    h = sympy.Symbol("h")
-    s = sympy.Symbol("s")
-
-    # 距離二乗和関数
-    R = ((t1[0] + h*v1[0]) - (t2[0] + s*v2[0]))**2 + \
-        ((t1[1] + h*v1[1]) - (t2[1] + s*v2[1]))**2 + \
-        ((t1[2] + h*v1[2]) - (t2[2] + s*v2[2]))**2
-    
-    # 偏微分
-    dR_dh = sympy.diff(R, h)
-    dR_ds = sympy.diff(R, s)
-
-    # 極小値を求める
-    result = sympy.solve([dR_dh, dR_ds])
-    h_val = result[h]
-    s_val = result[s]
-
-    # 二乗和誤差の出力
-    # error = ((t1[0] + h_val*v1[0]) - (t2[0] + s_val*v2[0]))**2 + \
-    #         ((t1[1] + h_val*v1[1]) - (t2[1] + s_val*v2[1]))**2 + \
-    #         ((t1[2] + h_val*v1[2]) - (t2[2] + s_val*v2[2]))**2
-    # print("error :", error, "\n")
-
-    # 2直線上の最近点
-    closePoint1 = np.float32([
-        t1[0] + h_val * v1[0],
-        t1[1] + h_val * v1[1],
-        t1[2] + h_val * v1[2],
-    ])
-    closePoint2 = np.float32([
-        t2[0] + s_val * v2[0],
-        t2[1] + s_val * v2[1],
-        t2[2] + s_val * v2[2],
-    ])
-
-    # 推定3次元ポイント
-    targetPoint = (closePoint1 + closePoint2)/2
-    return targetPoint
+  # 最近点
+  p1 = computeClosestPoint(t1, v1, t2, v2)
+  p2 = computeClosestPoint(t2, v2, t1, v1)
+  
+  p = (p1+p2)/2
+  
+  return p

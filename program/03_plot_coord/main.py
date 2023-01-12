@@ -12,10 +12,10 @@ digit = len(str(len(jsonList)))
 fig = plt.figure(figsize=(19.2,10.8))
 ax  = plt.axes()
 
-court1 = patches.Rectangle(xy=(0, 0), width = 6000, height=9000, facecolor="white", edgecolor="black", fill=True)
-court2 = patches.Rectangle(xy=(6000, 0), width = 3000, height=9000, facecolor="white", edgecolor="black", fill=True)
-court3 = patches.Rectangle(xy=(9000, 0), width = 3000, height=9000, facecolor="white", edgecolor="black", fill=True)
-court4 = patches.Rectangle(xy=(12000, 0), width = 6000, height=9000, facecolor="white", edgecolor="black", fill=True)
+court1 = patches.Rectangle(xy=(0, 0), width = 6000, height=9000, facecolor="white", edgecolor="black", fill=True, linewidth = 10)
+court2 = patches.Rectangle(xy=(6000, 0), width = 3000, height=9000, facecolor="white", edgecolor="black", fill=True, linewidth = 10)
+court3 = patches.Rectangle(xy=(9000, 0), width = 3000, height=9000, facecolor="white", edgecolor="black", fill=True, linewidth = 10)
+court4 = patches.Rectangle(xy=(12000, 0), width = 6000, height=9000, facecolor="white", edgecolor="black", fill=True, linewidth = 10)
 
 outDir = "output"
 os.makedirs(outDir, exist_ok=True)
@@ -32,10 +32,12 @@ for file in jsonList:
   with open(file) as f:
     data = json.load(f)
     for person in data:
+      # 諸事情でxを9000で反転
+      x = 9000*2 - data[person][0]
       if data[person][0] > 9000:
-        ax.text(data[person][0], data[person][1], person, size=20, horizontalalignment="center", verticalalignment="center", color="red")
+        ax.text(x, data[person][1], person, size=25, horizontalalignment="center", verticalalignment="center", color="red")
       else:
-        ax.text(data[person][0], data[person][1], person, size=20, horizontalalignment="center", verticalalignment="center", color="blue")
+        ax.text(x, data[person][1], person, size=25, horizontalalignment="center", verticalalignment="center", color="blue")
   
   print(file)
   
