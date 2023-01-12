@@ -1,5 +1,9 @@
 # AlphaPose生成JSON変換プログラム
 import json
+import os
+
+os.makedirs("c1_json", exist_ok=True)
+os.makedirs("c2_json", exist_ok=True)
 
 end_index = 275
 digit = len(str(end_index))
