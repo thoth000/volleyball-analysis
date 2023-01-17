@@ -20,6 +20,8 @@ court4 = patches.Rectangle(xy=(12000, 0), width = 6000, height=9000, facecolor="
 outDir = "output"
 os.makedirs(outDir, exist_ok=True)
 
+textsize = 45
+
 for file in jsonList:
   plt.xlim(0, 18000)
   plt.ylim(0, 9000)
@@ -37,9 +39,9 @@ for file in jsonList:
       # 諸事情でxを9000で反転
       x = 9000*2 - data[person]["position_x"]
       if data[person]["position_x"] > 9000:
-        ax.text(x, data[person]["position_y"], id, size=25, horizontalalignment="center", verticalalignment="center", color="red")
+        ax.text(x, data[person]["position_y"], id, size=textsize, horizontalalignment="center", verticalalignment="center", color="red", fontweight="bold")
       else:
-        ax.text(x, data[person]["position_y"], id, size=25, horizontalalignment="center", verticalalignment="center", color="blue")
+        ax.text(x, data[person]["position_y"], id, size=textsize, horizontalalignment="center", verticalalignment="center", color="blue", fontweight="bold")
   
   print(file)
   
