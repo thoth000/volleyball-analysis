@@ -18,6 +18,8 @@
 !/data/undistort_tracking/01_camera1/*
 !/data/undistort_tracking/01_camera2/*
 
+!/data/edit/*
+
 # specific JSON file
 
 /program/utility/c1_json/*.json
@@ -45,4 +47,7 @@
 !/Report/final/01/*
 !/Report/final/02/*
 !/Report/final/03/*
-Report/presen/~$卒研スライド_佐野01.pptx
+!/Report/final/03_sub/*
+!Report/final/final/*
+!/Report/presen/*
+
