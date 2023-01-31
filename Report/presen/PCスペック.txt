@@ -1,0 +1,10 @@
+[ハード情報]
+CPU	: AMD Ryzen 9 3900X 12-Core Processor
+memory	: 32 [GB]
+GPU	: NVIDIA GeForce RTX 3090 Ti
+
+[ソフト情報]
+OS	: Ubuntu 22.04.1 LTS
+Nvidia Driver Version : 515.76
+CUDA Version : 11.3
+pytorch	: 1.11.0
