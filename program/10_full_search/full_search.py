@@ -22,6 +22,9 @@ c2Files = glob.glob(c2Dir + "/*.json")
 samples = len(c1Files)
 digit = len(str(samples))
 
+zMaxLimit = 1000
+zMinLimit = -300
+
 # 許容距離
 errorLimit = 2000
 
@@ -99,7 +102,10 @@ for index in range(samples):
 
     if not((data["c1_id"] in idList1) and (data["c2_id"] in idList2)):
       continue
-    
+
+    if (data["position_z"] > zMaxLimit) or (data["position_z"] < zMinLimit):
+      continue
+
     outputData[str(personIndex)] = data
     idList1.remove(data["c1_id"])
     idList2.remove(data["c2_id"])

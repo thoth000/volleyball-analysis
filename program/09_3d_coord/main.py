@@ -7,7 +7,7 @@ def create3dVector():
   ret = (np.random.rand(3) - 0.5) * 1000
   return ret
 
-sampleNum = 100
+sampleNum = 12**2
 digit     = len(str(sampleNum))
 coords =  []
 vectors = []
