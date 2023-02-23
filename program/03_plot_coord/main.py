@@ -34,7 +34,7 @@ for file in jsonList:
   with open(file) as f:
     data = json.load(f)
     for person in data:
-      # 諸事情でxを9000で反転
+      # 座標軸変更の影響でxを9000で反転
       x = 9000*2 - data[person][0]
       if data[person][0] > 9000:
         ax.text(x, data[person][1], person, size=textsize, horizontalalignment="center", verticalalignment="center", color="red", fontweight="bold")
@@ -44,7 +44,6 @@ for file in jsonList:
   print(file)
   
   figFileName = "output/sanple{}.png".format(str(count).zfill(digit))
-  # plt.savefig('output/sample{:0=3}.png'.format(count))
   plt.savefig(figFileName)
   count += 1
   ax.clear()

@@ -87,7 +87,7 @@ for index in range(samples):
   
   searchResults = sorted(searchResults, key=lambda d: d["error"])
   
-  # エラー確認用出力プログラム
+  # 誤差確認用出力プログラム
   subOutPath = subOutDir + "/{}.json".format(str(index).zfill(digit))
   with open(subOutPath, "w") as subOutFile:
     json.dump(searchResults, subOutFile, indent=4)

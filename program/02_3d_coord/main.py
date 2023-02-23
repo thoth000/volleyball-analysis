@@ -9,7 +9,6 @@ from coord import *
 correspondFile  = open("correspond.json", "r")
 
 # data
-
 c1Files = glob.glob("c1_json/*.json")
 c2Files = glob.glob("c2_json/*.json")
 jsonDataNum = min(len(c1Files), len(c2Files))

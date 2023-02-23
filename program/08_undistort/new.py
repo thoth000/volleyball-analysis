@@ -26,7 +26,6 @@ def save_all_frames(video_path, dir_path, ext='png'):
       return
     n+=1
 
-
 c_dir      = "../../data/calibration"
 movie_path = "../../data/origin_movie/01_camera1.mp4"
 splited_images_dir = "splited_images"
@@ -61,9 +60,6 @@ for index, imageFile in enumerate(imageFiles):
 # 画像から動画への変換
 
 fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
-
-if movie_path == "../../data/origin_movie/01_camera2.mp4":
-  fourcc = cv2.VideoWriter_fourcc(*'HEVC')
 
 video = cv2.VideoWriter('output.mp4',fourcc, 30.0, (1920, 1080))
 

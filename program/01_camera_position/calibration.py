@@ -2,8 +2,6 @@ import cv2
 import numpy as np
 import glob
 
-##############################################
-
 def getObjectPoints(square_size, nX, nY):
   object_points = np.zeros((nX * nY, 3), np.float32)       
   object_points[:,:2] = np.mgrid[0:nY, 0:nX].T.reshape(-1, 2) 
