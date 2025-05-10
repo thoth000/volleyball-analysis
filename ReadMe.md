@@ -1,19 +1,18 @@
 2022/08/28
-# 研究概要
+# 選手の3次元位置を追跡するバレーボール分析支援システム
+複数カメラから撮影された試合映像から，バレーボール選手の位置を追跡するシステムの開発
 
-# 環境
-Anaconda中のJupyter Notebookを実行環境とした。
-## Notebook環境
-Anaconda Navigatorで仮想環境を作成する。
-- 画面左欄からEnvironmentsに移り、Createから仮想環境を作る。
-- Pythonのバージョンは最新のものでよい。(当環境は3.9.11)
+**関連リンク**
 
-### インストールパッケージ
+- [長岡高専クローズアップEC](https://github.com/thoth000/volleyball-analysis/tree/main)
+- [第28回高専シンポジウム](https://kosen-sympo.org/28th/)
+---
+### 環境
+Jupyter Notebook
+
+**パッケージ**
 - numpy
 - matplotlib
 - opencv
 - notebook
 - sympy
-
-## Git環境
-GitHubで自宅PCと研究室PCのリポジトリを共有する。
