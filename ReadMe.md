@@ -5,7 +5,7 @@
 
 **関連リンク**
 
-- [（学内発表）長岡高専クローズアップEC](https://github.com/thoth000/volleyball-analysis/tree/main)
+- [（学内発表）長岡高専クローズアップEC](https://www.nagaoka-ct.ac.jp/ec/closeup/index015.shtml)
 - [（学会参加）第28回高専シンポジウム](https://kosen-sympo.org/28th/)
 ---
 ### 環境
